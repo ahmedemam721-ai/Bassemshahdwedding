@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bassem & Shahd Wedding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #2c3e2e;
+            --accent-gold: #c5a059;
+            --bg-cream: #faf8f5;
+            --card-white: #ffffff;
+            --text-dark: #2c2c2c;
+            --text-muted: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            background-image: radial-gradient(#c5a05922 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-cream);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.9s ease, visibility 0.9s ease;
+            padding: 25px;
+        }
+
+        .welcome-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .welcome-box {
+            border: 1.5px solid var(--accent-gold);
+            outline: 4px double #c5a05955;
+            outline-offset: -10px;
+            padding: 50px 35px;
+            background: var(--card-white);
+            border-radius: 16px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 15px 40px rgba(44, 62, 46, 0.08);
+        }
+
+        .welcome-en {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.6rem;
+            color: var(--primary-green);
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .welcome-hint {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+
+        .open-btn {
+            background: linear-gradient(135deg, var(--primary-green), #1e2b20);
+            color: #fff;
+            border: 1px solid var(--accent-gold);
+            padding: 14px 38px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 6px 20px rgba(44, 62, 46, 0.25);
+        }
+
+        .open-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(44, 62, 46, 0.35);
+        }
+
+        /* Main Content */
+        .page-wrapper {
+            padding: 30px 16px 80px;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .invitation-frame {
+            background: var(--card-white);
+            border: 1.5px solid var(--accent-gold);
+            outline: 1px solid #c5a05966;
+            outline-offset: -8px;
+            border-radius: 20px;
+            padding: 45px 25px;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .bismillah {
+            font-family: 'Amiri', serif;
+            font-size: 1.35rem;
+            color: var(--accent-gold);
+            font-weight: 700;
+            margin-bottom: 12px;
+            direction: rtl;
+        }
+
+        .quran-container {
+            margin-bottom: 25px;
+            padding: 0 10px;
+        }
+
+        .quran-verse-ar {
+            font-family: 'Amiri', serif;
+            font-size: 1.35rem;
+            color: var(--primary-green);
+            line-height: 1.9;
+            margin-bottom: 8px;
+            direction: rtl;
+        }
+
+        .quran-verse-en {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* Decorative Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 24px auto;
+            width: 75%;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
+        }
+
+        .divider span {
+            color: var(--accent-gold);
+            padding: 0 14px;
+            font-size: 1.2rem;
+        }
+
+        /* Names */
+        .names-en {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.8rem;
+            color: var(--primary-green);
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+
+        .names-en span {
+            color: var(--accent-gold);
+        }
+
+        .invite-text-en {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        /* Details Cards */
+        .details-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-top: 10px;
+        }
+
+        .detail-box {
+            background: var(--bg-cream);
+            border: 1px solid #e6dec8;
+            border-radius: 14px;
+            padding: 24px 18px;
+        }
+
+        .detail-icon {
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .detail-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .detail-main {
+            font-size: 1.08rem;
+            color: var(--primary-green);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .detail-sub {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .detail-address {
+            font-size: 0.85rem;
+            color: #777777;
+            line-height: 1.5;
+            max-width: 380px;
+            margin: 6px auto 14px;
+        }
+
+        /* Venue Image */
+        .venue-img {
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid var(--accent-gold);
+            margin: 12px 0 16px;
+            display: block;
+        }
+
+        /* Map Button */
+        .map-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-green);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px solid var(--accent-gold);
+            transition: transform 0.3s, background 0.3s;
+            margin-top: 4px;
+        }
+
+        .map-btn:hover {
+            background: #1e2b20;
+            transform: translateY(-2px);
+        }
+
+        .footer-note-en {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: var(--primary-green);
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        /* Audio Control Button */
+        .audio-control {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            background: var(--primary-green);
+            color: var(--accent-gold);
+            border: 1.5px solid var(--accent-gold);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+            z-index: 1000;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .audio-control.playing {
+            animation: pulseRing 2s infinite;
+        }
+
+        @keyframes pulseRing {
+            0% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.6); }
+            70% { box-shadow: 0 0 0 12px rgba(197, 160, 89, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Welcome Screen -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-box">
+            <div class="welcome-en">Bassem &amp; Shahd</div>
+            <p class="welcome-hint">Tap below to open your invitation</p>
+            <button class="open-btn" onclick="openInvitation()">Open Invitation</button>
+        </div>
+    </div>
+
+    <!-- Main Invitation Content -->
+    <div class="page-wrapper">
+        <div class="invitation-frame">
+            
+            <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            
+            <!-- Quran Verse (Arabic & English) -->
+            <div class="quran-container">
+                <div class="quran-verse-ar">﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ﴾</div>
+                <div class="quran-verse-en">"And among His Signs is that He created for you mates from yourselves, that you may find tranquility in them, and He has put between you affection and mercy."</div>
+            </div>
+
+            <div class="divider"><span>❖</span></div>
+
+            <div class="names-en">Bassem <span>&amp;</span> Shahd</div>
+
+            <p class="invite-text-en">Together with our families, we joyfully invite you to celebrate our wedding</p>
+
+            <div class="details-grid">
+                
+                <!-- Date & Time -->
+                <div class="detail-box">
+                    <span class="detail-icon">📅</span>
+                    <div class="detail-title">Date &amp; Time</div>
+                    <div class="detail-main">Friday, December 18, 2026</div>
+                    <div class="detail-sub">At 7:00 PM</div>
+                </div>
+
+                <!-- Location, Address, Photo & Map -->
+                <div class="detail-box">
+                    <span class="detail-icon">📍</span>
+                    <div class="detail-title">Location &amp; Venue</div>
+                    <div class="detail-main">Oro Plaza Hotel — Tia Vie Hall</div>
+                    <div class="detail-address">
+                        KM 28, Cairo - Suez Desert Road (El Thawra St. Extension), El Shorouk City, Cairo
+                    </div>
+
+                    <!-- Venue Photo (Upload an image named venue.jpg to GitHub; hides automatically if not uploaded) -->
+                    <img src="venue.jpg" alt="Oro Plaza Hotel - Tia Vie Hall" class="venue-img" onerror="this.style.display='none'">
+
+                    <!-- Direct Google Maps Link -->
+                    <a href="https://www.google.com/maps/search/?api=1&query=Oro+Plaza+Hotel+El+Shorouk+Cairo" target="_blank" rel="noopener noreferrer" class="map-btn">
+                        <span>🗺️</span> View Location on Map
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="divider"><span>❖</span></div>
+
+            <div class="footer-note-en">Your presence adds joy and happiness to our special night</div>
+
+        </div>
+    </div>
+
+    <!-- Audio Control Button -->
+    <button class="audio-control" id="audioBtn" onclick="toggleAudio()" title="Play / Pause Music">🎵</button>
+
+    <!-- Audio File -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="faraha.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function openInvitation() {
+            const welcome = document.getElementById('welcomeScreen');
+            const music = document.getElementById('bgMusic');
+            const audioBtn = document.getElementById('audioBtn');
+
+            welcome.classList.add('hidden');
+            audioBtn.style.display = 'flex';
+
+            music.play().then(() => {
+                audioBtn.classList.add('playing');
+            }).catch(error => {
+                console.log("Audio autoplay restricted:", error);
+            });
+        }
+
+        function toggleAudio() {
+            const music = document.getElementById('bgMusic');
+            const audioBtn = document.getElementById('audioBtn');
+            if (music.paused) {
+                music.play();
+                audioBtn.style.opacity = '1';
+                audioBtn.classList.add('playing');
+            } else {
+                music.pause();
+                audioBtn.style.opacity = '0.5';
+                audioBtn.classList.remove('playing');
+            }
+        }
+    </script>
+</body>
+</html>
