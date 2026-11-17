@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bassem & Shahd Wedding</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #fcfbfa;
+            color: #2c2c2c;
+            font-family: 'Montserrat', 'Amiri', serif;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fcfbfa;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease;
+        }
+        .welcome-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .names {
+            font-family: 'Amiri', serif;
+            font-size: 2.5rem;
+            color: #3b4d3c;
+            margin-bottom: 20px;
+        }
+        .open-btn {
+            background-color: #3b4d3c;
+            color: #fff;
+            border: none;
+            padding: 12px 35px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+        .open-btn:hover {
+            background-color: #2b382c;
+        }
+        .main-content {
+            padding: 50px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-family: 'Amiri', serif;
+            font-size: 3rem;
+            color: #3b4d3c;
+            margin-bottom: 15px;
+        }
+        p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .details-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        .audio-control {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #3b4d3c;
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="names">Bassem & Shahd</div>
+        <button class="open-btn" onclick="openInvitation()">Open Invitation / افتح الدعوة</button>
+    </div>
+
+    <div class="main-content">
+        <h1>Bassem & Shahd</h1>
+        <p>We are getting married! / حفل زفافنا</p>
+        
+        <div class="details-card">
+            <h3>December 18, 2026 - 7:00 PM</h3>
+            <p style="margin-top: 10px;">Oro Plaza Hotel, Tia Vie</p>
+        </div>
+    </div>
+
+    <button class="audio-control" id="audioBtn" onclick="toggleAudio()" style="display: none;">🎵</button>
+
+    <audio id="bgMusic" loop>
+        <source src="faraha.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        function openInvitation() {
+            const welcome = document.getElementById('welcomeScreen');
+            const music = document.getElementById('bgMusic');
+            const audioBtn = document.getElementById('audioBtn');
+
+            welcome.classList.add('hidden');
+            audioBtn.style.display = 'flex';
+
+            music.play().catch(error => {
+                console.log("Audio autoplay restricted", error);
+            });
+        }
+
+        function toggleAudio() {
+            const music = document.getElementById('bgMusic');
+            const audioBtn = document.getElementById('audioBtn');
+            if (music.paused) {
+                music.play();
+                audioBtn.style.opacity = '1';
+            } else {
+                music.pause();
+                audioBtn.style.opacity = '0.5';
+            }
+        }
+    </script>
+</body>
+</html>
